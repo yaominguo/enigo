@@ -369,6 +369,17 @@ impl KeyboardControllable for Enigo {
         event.post(CGEventTapLocation::HID);
     }
 
+    fn key_click_without_delay(&mut self, key: Key) {
+        let keycode = self.key_to_keycode(key);
+        let event = CGEvent::new_keyboard_event(self.event_source.clone(), keycode, true)
+            .expect("Failed creating event");
+        event.post(CGEventTapLocation::HID);
+
+        let event = CGEvent::new_keyboard_event(self.event_source.clone(), keycode, false)
+            .expect("Failed creating event");
+        event.post(CGEventTapLocation::HID);
+    }
+
     fn key_down(&mut self, key: Key) {
         thread::sleep(Duration::from_millis(20));
         let event =

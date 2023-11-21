@@ -330,6 +330,11 @@ pub trait KeyboardControllable {
     /// [`KeyboardControllable::key_down`] and
     /// [`KeyboardControllable::key_up`] functions consecutively
     fn key_click(&mut self, key: Key);
+
+    /// Press and release the key. It is the same as calling the
+    /// [`KeyboardControllable::key_down`] and
+    /// [`KeyboardControllable::key_up`] functions consecutively
+    fn key_click_without_delay(&mut self, key: Key);
 }
 
 impl Enigo {
